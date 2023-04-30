@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { separetesNumberWithComma } from '../../utils/separatesNumberWithComma';
 
@@ -15,6 +15,7 @@ import {
   Text,
   TextWrap,
   ButtonWhite,
+  ButtonGrine,
 } from './TweetCard.styled';
 // import PropTypes from 'prop-types';
 
@@ -26,9 +27,23 @@ import {
 //     </button>
 //   </div>
 // );
-const onDeleteClick = () => console.log('On button click');
 
 const TweetCard = ({ item }) => {
+  const [status, setStatus] = useState(
+    JSON.parse(localStorage.getItem(`card-${item.id}-Status`))
+  );
+
+  const onDeleteClick = () => {
+    console.log('On button click');
+    if (status) {
+      localStorage.setItem(`card-${item.id}-Status`, false);
+    } else {
+      localStorage.setItem(`card-${item.id}-Status`, true);
+    }
+
+    setStatus(JSON.parse(localStorage.getItem(`card-${item.id}-Status`)));
+  };
+
   return (
     <>
       <Logo src={logo} alt={'Logo'} width={76} />
@@ -40,9 +55,15 @@ const TweetCard = ({ item }) => {
         <Text>{item.tweets} TWEETS</Text>
         <Text>{separetesNumberWithComma(item.followers)} FOLLOWERS</Text>
       </TextWrap>
-      <ButtonWhite type="button" onClick={onDeleteClick}>
-        FOLLOW
-      </ButtonWhite>
+      {status ? (
+        <ButtonGrine type="button" onClick={onDeleteClick}>
+          FOLLOWING
+        </ButtonGrine>
+      ) : (
+        <ButtonWhite type="button" onClick={onDeleteClick}>
+          FOLLOW
+        </ButtonWhite>
+      )}
     </>
   );
 };
