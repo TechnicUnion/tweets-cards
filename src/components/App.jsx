@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 // import Searchbar from './Searchbar/Searchbar';
 import TweetsList from './TweetsList/TweetsList';
-// import { animateScroll as scroll } from 'react-scroll';
+import { animateScroll as scroll } from 'react-scroll';
 
 export default function App() {
   // const [searchQuery, setSearchQuery] = useState('');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(3);
   const [newFetch, setNewFetch] = useState(true);
 
   // const formSubmitHandler = data => {
@@ -17,9 +17,9 @@ export default function App() {
   // };
 
   const loadMore = () => {
-    setPage(prevState => prevState + 1);
+    setPage(prevState => prevState + 3);
     setNewFetch(false);
-    // scroll.scrollToBottom();
+    scroll.scrollToBottom();
   };
 
   return (

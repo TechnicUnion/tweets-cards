@@ -7,18 +7,19 @@ import { List, CardContainer } from './TweetList.styled';
 // import Modal from 'components/Modal/Modal';
 // import Button from 'components/Button/Button';
 
-export default function TweetsList({ searchQuery, page, onClick, newFetch }) {
+export default function TweetsList({ page, onClick, newFetch }) {
   const [tweetsList, setTweetsList] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('idle');
 
+  console.log(page);
   useEffect(() => {
     // if (!searchQuery) {
     //   return;
     // }
     setStatus('pending');
     fetch(
-      `https://63d18414120b32bbe8fa05c2.mockapi.io/tweets?page=${page}&limit=3`
+      `https://63d18414120b32bbe8fa05c2.mockapi.io/tweets?page=1&limit=${page}`
     )
       .then(response => response.json())
       .then(tweetsList => {
@@ -39,7 +40,7 @@ export default function TweetsList({ searchQuery, page, onClick, newFetch }) {
         setStatus('rejected');
         return setError(error);
       });
-  }, [newFetch, page, searchQuery]);
+  }, [newFetch, page]);
 
   //   const openModal = data => {
   //     setShowModal(true);
@@ -73,8 +74,10 @@ export default function TweetsList({ searchQuery, page, onClick, newFetch }) {
             </CardContainer>
           ))}
         </List>
-        {/* {gallery.length !== Math.ceil(gallery[0].totalHits / 12) && (
-          <Button onClick={onClick} /> */}
+        {/* {tweetsList.length !== Math.ceil(tweetsList[0].totalHits / 12) && ( */}
+        <button type="button" onClick={onClick}>
+          Load more
+        </button>
         {/* )} */}
       </div>
     );

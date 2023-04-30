@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
 
 import { separetesNumberWithComma } from '../../utils/separatesNumberWithComma';
 
@@ -19,26 +20,29 @@ import {
 } from './TweetCard.styled';
 // import PropTypes from 'prop-types';
 
-// const TweetCard = ({ item, onDeleteClick }) => (
-//   <div>
-//     {item.name}: <span>{item.phone}</span>
-//     <button type="button" onClick={() => onDeleteClick(item.id)}>
-//       Delete
-//     </button>
-//   </div>
-// );
-
 const TweetCard = ({ item }) => {
   const [status, setStatus] = useState(
-    JSON.parse(localStorage.getItem(`card-${item.id}-Status`))
+    JSON.parse(localStorage.getItem(`card-${item.id}-Status`)) || {
+      followers: item.followers,
+    }
   );
-
-  const onDeleteClick = () => {
-    console.log('On button click');
-    if (status) {
-      localStorage.setItem(`card-${item.id}-Status`, false);
+  const onButtonClick = () => {
+    if (status.isFollow) {
+      localStorage.setItem(
+        `card-${item.id}-Status`,
+        JSON.stringify({
+          isFollow: false,
+          followers: status.followers - 1,
+        })
+      );
     } else {
-      localStorage.setItem(`card-${item.id}-Status`, true);
+      localStorage.setItem(
+        `card-${item.id}-Status`,
+        JSON.stringify({
+          isFollow: true,
+          followers: status.followers + 1,
+        })
+      );
     }
 
     setStatus(JSON.parse(localStorage.getItem(`card-${item.id}-Status`)));
@@ -53,14 +57,14 @@ const TweetCard = ({ item }) => {
       <Elipse src={elipse} alt={'elips'} />
       <TextWrap>
         <Text>{item.tweets} TWEETS</Text>
-        <Text>{separetesNumberWithComma(item.followers)} FOLLOWERS</Text>
+        <Text>{separetesNumberWithComma(status.followers)} FOLLOWERS</Text>
       </TextWrap>
-      {status ? (
-        <ButtonGrine type="button" onClick={onDeleteClick}>
+      {status.isFollow ? (
+        <ButtonGrine type="button" onClick={onButtonClick}>
           FOLLOWING
         </ButtonGrine>
       ) : (
-        <ButtonWhite type="button" onClick={onDeleteClick}>
+        <ButtonWhite type="button" onClick={onButtonClick}>
           FOLLOW
         </ButtonWhite>
       )}
