@@ -13,6 +13,7 @@ export default function App() {
   const contactsList = useSelector(state => state.contacts);
 
   const dispatch = useDispatch();
+
   const isLoading = useSelector(state => state.contacts.isLoading);
   const error = useSelector(state => state.contacts.error);
 
