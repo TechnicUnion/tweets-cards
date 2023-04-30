@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  //   padding: 0;
-  //   width: 400px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 60px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   list-style: none;
 `;
 
-export const Container = styled.li`
+export const CardContainer = styled.li`
   position: relative;
   width: 380px;
   height: 460px;

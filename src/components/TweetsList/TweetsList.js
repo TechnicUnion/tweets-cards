@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import TweetCard from '../TweetCard/TweetCard';
-import { List, Container } from './TweetList.styled';
+import { List, CardContainer } from './TweetList.styled';
 
 // import Loader from '../Loader/Loader';
 // import Modal from 'components/Modal/Modal';
@@ -63,15 +63,14 @@ export default function TweetsList({ searchQuery, page, onClick, newFetch }) {
   }
 
   if (status === 'resolved') {
-    console.log(tweetsList);
     return (
       <div>
         {/* {showModal && <Modal image={largeImage} onClose={closeModal} />} */}
         <List>
           {tweetsList.map(item => (
-            <Container key={item.id}>
+            <CardContainer key={item.id}>
               <TweetCard item={item} />
-            </Container>
+            </CardContainer>
           ))}
         </List>
         {/* {gallery.length !== Math.ceil(gallery[0].totalHits / 12) && (

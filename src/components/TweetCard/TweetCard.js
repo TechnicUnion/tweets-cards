@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { separetesNumberWithComma } from '../../utils/separatesNumberWithComma';
+
 import logo from '../../image/logo.svg';
 import picture from '../../image/picture2 1.png';
 import elipse from '../../image/elipse.svg';
@@ -12,6 +14,7 @@ import {
   Elipse,
   Text,
   TextWrap,
+  ButtonWhite,
 } from './TweetCard.styled';
 // import PropTypes from 'prop-types';
 
@@ -26,7 +29,6 @@ import {
 const onDeleteClick = () => console.log('On button click');
 
 const TweetCard = ({ item }) => {
-  console.log(item.tweets);
   return (
     <>
       <Logo src={logo} alt={'Logo'} width={76} />
@@ -36,11 +38,11 @@ const TweetCard = ({ item }) => {
       <Elipse src={elipse} alt={'elips'} />
       <TextWrap>
         <Text>{item.tweets} TWEETS</Text>
-        <Text>{item.followers} FOLLOWERS</Text>
+        <Text>{separetesNumberWithComma(item.followers)} FOLLOWERS</Text>
       </TextWrap>
-      <button type="button" onClick={onDeleteClick}>
-        Delete
-      </button>
+      <ButtonWhite type="button" onClick={onDeleteClick}>
+        FOLLOW
+      </ButtonWhite>
     </>
   );
 };
