@@ -23,12 +23,9 @@ export default function TweetsList({ limit, onClick, newFetch }) {
       .then(response => response.json())
       .then(tweetsList => {
         if (tweetsList.length > 0) {
+          // eslint-disable-next-line no-sequences
           return setTweetsList(tweetsList), setStatus('resolved');
         }
-        // if (newFetch && tweetsList.length > 0) {
-        //   setStatus('resolved');
-        //   return setTweetsList(tweetsList);
-        // }
 
         return Promise.reject(new Error(`По запиту твітів не знайдено`));
       })
@@ -38,23 +35,6 @@ export default function TweetsList({ limit, onClick, newFetch }) {
       });
   }, [newFetch, limit]);
 
-  //   const openModal = data => {
-  //     setShowModal(true);
-  //     setLargeImage(data);
-  //   };
-
-  //   const closeModal = () => {
-  //     setShowModal(false);
-  //   };
-
-  //   if (status === 'idle') {
-  //     return <div>Введіть запит для пошуку</div>;
-  //   }
-
-  //   if (status === 'pending') {
-  //     return <Loader />;
-  //   }
-
   if (status === 'rejected') {
     return <h1>{error.message}</h1>;
   }
@@ -62,7 +42,6 @@ export default function TweetsList({ limit, onClick, newFetch }) {
   if (status === 'resolved') {
     return (
       <div>
-        {/* {showModal && <Modal image={largeImage} onClose={closeModal} />} */}
         <List>
           {tweetsList.map(item => (
             <CardContainer key={item.id}>
@@ -70,7 +49,6 @@ export default function TweetsList({ limit, onClick, newFetch }) {
             </CardContainer>
           ))}
         </List>
-        {/* {tweetsList.length !== Math.ceil(tweetsList[0].totalHits / 12) && ( */}
         {limit <= tweetsList.length && (
           <ButtonWhite type="button" onClick={onClick}>
             Load more
