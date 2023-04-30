@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
+  width: 1250px;
   margin-top: 60px;
   display: flex;
   flex-wrap: wrap;

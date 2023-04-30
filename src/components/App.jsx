@@ -5,7 +5,7 @@ import { animateScroll as scroll } from 'react-scroll';
 
 export default function App() {
   // const [searchQuery, setSearchQuery] = useState('');
-  const [page, setPage] = useState(3);
+  const [limit, setLimit] = useState(3);
   const [newFetch, setNewFetch] = useState(true);
 
   // const formSubmitHandler = data => {
@@ -17,7 +17,7 @@ export default function App() {
   // };
 
   const loadMore = () => {
-    setPage(prevState => prevState + 3);
+    setLimit(prevState => prevState + 3);
     setNewFetch(false);
     scroll.scrollToBottom();
   };
@@ -28,7 +28,7 @@ export default function App() {
       <div>
         <TweetsList
           // searchQuery={searchQuery}
-          page={page}
+          limit={limit}
           newFetch={newFetch}
           onClick={loadMore}
         />
