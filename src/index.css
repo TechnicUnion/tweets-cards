@@ -7,7 +7,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 code {
@@ -20,14 +19,16 @@ code {
 }
 
 h1,
-h2 {
+h2,
+h3,
+img {
   margin: 0;
 }
 
 .mainContainer {
-  padding: 30px;
+  padding: 0px;
 }
 
 .header {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }

@@ -4,7 +4,15 @@ import logo from '../../image/logo.svg';
 import picture from '../../image/picture2 1.png';
 import elipse from '../../image/elipse.svg';
 import rectangl from '../../image/rectangle.svg';
-import { Avatar, Image, Logo } from './TweetCard.styled';
+import {
+  Avatar,
+  Image,
+  Logo,
+  Rectangl,
+  Elipse,
+  Text,
+  TextWrap,
+} from './TweetCard.styled';
 // import PropTypes from 'prop-types';
 
 // const TweetCard = ({ item, onDeleteClick }) => (
@@ -23,10 +31,13 @@ const TweetCard = ({ item }) => {
     <>
       <Logo src={logo} alt={'Logo'} width={76} />
       <Image src={picture} alt={item.user} />
-      <img src={rectangl} alt={'Logo'} />
+      <Rectangl src={rectangl} alt={'rectangl'} />
       <Avatar src={item.avatar} alt={item.user} />
-      <h3>{item.tweets} TWEETS</h3>
-      <h3>{item.followers} FOLLOWERS</h3>
+      <Elipse src={elipse} alt={'elips'} />
+      <TextWrap>
+        <Text>{item.tweets} TWEETS</Text>
+        <Text>{item.followers} FOLLOWERS</Text>
+      </TextWrap>
       <button type="button" onClick={onDeleteClick}>
         Delete
       </button>
