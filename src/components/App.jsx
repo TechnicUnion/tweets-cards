@@ -6,7 +6,7 @@ import TweetsList from './TweetsList/TweetsList';
 export default function App() {
   // const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
-  const [newFetch, setNewFetch] = useState(false);
+  const [newFetch, setNewFetch] = useState(true);
 
   // const formSubmitHandler = data => {
   //   if (searchQuery !== data) {

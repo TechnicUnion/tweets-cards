@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import TweetCard from '../TweetCard/TweetCard';
+import { List, Container } from './TweetList.styled';
+
 // import Loader from '../Loader/Loader';
 // import Modal from 'components/Modal/Modal';
 // import Button from 'components/Button/Button';
@@ -28,7 +30,7 @@ export default function TweetsList({ searchQuery, page, onClick, newFetch }) {
         }
         if (newFetch && tweetsList.length > 0) {
           setStatus('resolved');
-          return setTweetsList([tweetsList]);
+          return setTweetsList(tweetsList);
         }
 
         return Promise.reject(new Error(`По запиту твітів не знайдено`));
@@ -61,16 +63,17 @@ export default function TweetsList({ searchQuery, page, onClick, newFetch }) {
   }
 
   if (status === 'resolved') {
+    console.log(tweetsList);
     return (
       <div>
         {/* {showModal && <Modal image={largeImage} onClose={closeModal} />} */}
-        <ul>
+        <List>
           {tweetsList.map(item => (
-            <li key={item.id}>
+            <Container key={item.id}>
               <TweetCard item={item} />
-            </li>
+            </Container>
           ))}
-        </ul>
+        </List>
         {/* {gallery.length !== Math.ceil(gallery[0].totalHits / 12) && (
           <Button onClick={onClick} /> */}
         {/* )} */}
@@ -79,9 +82,9 @@ export default function TweetsList({ searchQuery, page, onClick, newFetch }) {
   }
 }
 
-TweetsList.propTypes = {
-  searchQuery: PropTypes.string,
-  page: PropTypes.number,
-  onClick: PropTypes.func,
-  newFetch: PropTypes.bool,
-};
+// TweetsList.propTypes = {
+//   searchQuery: PropTypes.string,
+//   page: PropTypes.number,
+//   onClick: PropTypes.func,
+//   newFetch: PropTypes.bool,
+// };
