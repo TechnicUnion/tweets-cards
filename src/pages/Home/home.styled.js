@@ -21,9 +21,9 @@ export const NavItem = styled(NavLink)`
   padding: 10px;
   font-size: 48px;
   text-decoration: none;
-  border: 4px solid ${props => props.theme.color.secondaryColor};
+  border: 4px solid ${props => props.theme.color.activeLinkColor};
   border-radius: 20px;
-  color: ${props => props.theme.color.secondaryColor};
+  color: ${props => props.theme.color.activeLinkColor};
   transition: all 350ms cubic-bezier(0.075, 0.82, 0.165, 1);
   &:hover {
     text-decoration: underline;
