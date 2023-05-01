@@ -1,38 +1,19 @@
-import React, { useState } from 'react';
-// import Searchbar from './Searchbar/Searchbar';
-import TweetsList from './TweetsList/TweetsList';
-import { animateScroll as scroll } from 'react-scroll';
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 
-export default function App() {
-  // const [searchQuery, setSearchQuery] = useState('');
-  const [limit, setLimit] = useState(3);
-  const [newFetch, setNewFetch] = useState(true);
+const Home = lazy(() => import('../pages/Home/home'));
+const Tweets = lazy(() => import('../pages/Tweets/tweets'));
 
-  // const formSubmitHandler = data => {
-  //   if (searchQuery !== data) {
-  //     setSearchQuery(data);
-  //     setPage(1);
-  //     setNewFetch(true);
-  //   }
-  // };
-
-  const loadMore = () => {
-    setLimit(prevState => prevState + 3);
-    setNewFetch(false);
-    scroll.scrollToBottom();
-  };
-
+export const App = () => {
   return (
     <div>
-      {/* <Searchbar onSubmit={formSubmitHandler} /> */}
-      <div>
-        <TweetsList
-          // searchQuery={searchQuery}
-          limit={limit}
-          newFetch={newFetch}
-          onClick={loadMore}
-        />
-      </div>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/tweets" element={<Tweets />} />
+        </Route>
+      </Routes>
     </div>
   );
-}
+};
